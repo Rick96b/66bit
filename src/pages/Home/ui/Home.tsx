@@ -1,8 +1,9 @@
 import React from 'react'
+import { NewsList } from 'widgets'
 
 const Home = () => {
   return (
-    <div>Home</div>
+    <NewsList />
   )
 }
 
