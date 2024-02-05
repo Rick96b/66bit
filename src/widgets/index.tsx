@@ -1,1 +1,1 @@
-export {default as NewsList} from './news-list/ui/NewsList'
+export {default as StaffList} from './staff-list/ui/StaffList'

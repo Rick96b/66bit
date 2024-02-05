@@ -1,4 +1,4 @@
-export type News = {
+export type Employee = {
     id: number;
     title: string;
     content: string;

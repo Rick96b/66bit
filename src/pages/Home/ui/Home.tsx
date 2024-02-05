@@ -1,9 +1,13 @@
 import React from 'react'
-import { NewsList } from 'widgets'
+import { StaffList } from 'widgets'
+import { Header } from 'widgets/header'
 
 const Home = () => {
   return (
-    <NewsList />
+    <>
+      <Header />
+      <StaffList />
+    </>
   )
 }
 
