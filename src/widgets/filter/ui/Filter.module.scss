@@ -1,0 +1,19 @@
+.filter h2 {
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 47px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+.filterHeader {
+    display: flex;
+    justify-content: space-between;
+
+    margin-bottom: 28px;
+}
+
+.selectedFiltersContainer {
+    margin-top: 28px;
+    background-color: #F2F2F2;
+}

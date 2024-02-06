@@ -1,0 +1,43 @@
+.filterCard {
+    display: flex;
+    padding: 10px;
+    border-radius: 5px;
+
+    background-color: #fff;
+
+    img {
+        margin-right: 4.5px;
+    }
+}
+
+.selectedFilters {
+    display: flex;
+    justify-content: space-between;
+
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
+.selectedFiltersContainer {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 10px;
+    column-gap: 24px;
+    align-items: center;
+}
+
+.selectedFiltersTitle {
+    margin-right: 20px;
+
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 23px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+.cancelButton {
+    display: flex;
+    align-items: center;
+    margin-right: 4.5px;
+}
