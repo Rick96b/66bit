@@ -1,4 +1,4 @@
-import { SelectChangeEvent, TextField, styled } from '@mui/material'
+import { Button, SelectChangeEvent, TextField, styled } from '@mui/material'
 import React, { useState } from 'react'
 
 import styles from './Filter.module.scss'
@@ -11,7 +11,6 @@ const positionsList = [
   'Аналитик',
   'Менеджер',
   'Дизайнер',
-  'Fullstack'
 ]
 
 const genderList = [
@@ -37,27 +36,19 @@ const FilterTextField = styled(TextField)({
   }
 })
 
-const Filter = () => {
-  const [positions, setPositions] = useState<string[]>([])
+interface FilterProps {
+  changeFilters?: Function
+}
+
+const Filter:React.FC<FilterProps> = props => {
+  const {
+    changeFilters = () => {}
+  } = props
+
+  const [position, setPositions] = useState('')
   const [gender, setGender] = useState('')
   const [name, setName] = useState('')
   const [stack, setStack] = useState<string[]>([])
-
-  const handleChangePositions = (event: SelectChangeEvent<string[]>) => {
-    const {
-      target: { value },
-    } = event;
-    setPositions(
-      typeof value === 'string' ? value.split(',') : value,
-    );
-  }
-
-  const handleChangeGender = (event: SelectChangeEvent<string>) => {
-    const {
-      target: { value },
-    } = event;
-    setGender(value);
-  }
 
   const handleChangeStack = (event: SelectChangeEvent<string[]>) => {
     const {
@@ -70,7 +61,7 @@ const Filter = () => {
 
   const handleRemoveFilter = (filterName: string) => {
     if(filterName === gender) setGender('')
-    if(positions.includes(filterName)) setPositions((prevList) => prevList.filter(item => item !== filterName))
+    if(position.includes(filterName)) setPositions('')
     if(stack.includes(filterName)) setStack((prevList) => prevList.filter(item => item !== filterName))
   }
 
@@ -83,14 +74,13 @@ const Filter = () => {
                 <FilterSelect 
                   renderValue='Должность'
                   menuItems={positionsList}
-                  isMultiple
-                  onChange={handleChangePositions}
-                  value={positions}
+                  onChange={(event) => setPositions(event.target.value)}
+                  value={position}
                 />
                 <FilterSelect 
                    renderValue='Пол'
                    menuItems={genderList}
-                   onChange={handleChangeGender}
+                   onChange={(event) => setGender(event.target.value)}
                    value={gender}
                 />
                 <FilterSelect 
@@ -109,10 +99,23 @@ const Filter = () => {
           />
         </div>
         <div className={styles.selectedFiltersContainer}>
-          <SelectedFilters 
-            selectedFilters={[...positions, gender, ...stack]}
-            removeFilter={handleRemoveFilter}
-          />
+          <div className='container'>
+            <SelectedFilters 
+              selectedFilters={[position, gender, ...stack]}
+              removeFilter={handleRemoveFilter}
+            />
+            <Button
+              className={styles.submitButton}
+              onClick={() => changeFilters({
+                gender: gender,
+                name: name,
+                position: position,
+                stack: stack
+              })}
+            >
+              Найти
+            </Button>
+          </div>
         </div>
     </section>
   )

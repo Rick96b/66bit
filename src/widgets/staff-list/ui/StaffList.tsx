@@ -1,21 +1,52 @@
-import { EmployeeCard, useEmployeeApi } from 'entities/employee'
+import { Gender, Position, Stack, useEmployeeApi } from 'entities/employee'
 import React, { useRef } from 'react'
 import { useInfiniteScroll } from '../hooks/useInfiniteScroll'
 
-interface EmployeesListProps {
+import styles from './StaffList.module.scss'
 
+interface EmployeesListProps {
+    filters?: {
+        gender?: Gender
+        position?: Position
+        stack?: Stack
+        name?: string
+    }
 }
 
-const EmployeesList: React.FC<EmployeesListProps> = () => {
-    const {employees, isLoading, error, reloadEmployees, addEmployeesByPage} = useEmployeeApi({url:'https://frontappapi.dock7.66bit.ru/api/news/get'})
+const EmployeesList: React.FC<EmployeesListProps> = props => {
+    const {
+        filters
+    } = props
+
+    const {employees, isLoading, error, addEmployeesByPage} = useEmployeeApi({
+        url:'https://frontend-test-api.stk8s.66bit.ru/api/Employee',
+        filters: filters
+    })
     const newsListRef = useRef(null)
     useInfiniteScroll(newsListRef, addEmployeesByPage)
     
     return (
-        <section ref={newsListRef}>
-            {employees.map(EmployeesData => 
-                <EmployeeCard employee={EmployeesData} />    
-            )}
+        <section ref={newsListRef} className='container'>
+            <table className={styles.employeesTable}>
+                <thead>
+                    <tr>
+                        <td>ФИО</td>
+                        <td>Должность</td>
+                        <td>Телефон</td>
+                        <td>Дата рождения</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {employees.map(EmployeesData => 
+                        <tr>
+                            <td>{EmployeesData.name}</td>
+                            <td>{EmployeesData.position}</td>
+                            <td>{EmployeesData.phone}</td>
+                            <td>{EmployeesData.birthdate}</td>
+                        </tr>
+                    )}
+                </tbody>
+            </table>
         </section>
     )
 }

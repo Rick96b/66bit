@@ -12,8 +12,8 @@ const EmployeeCard:React.FC<EmployeeCardProps> = props => {
 
     return (
         <article>
-            <h2>{employee.title}</h2>
-            <p>{employee.content}</p>
+            <h2>{employee.name}</h2>
+            <p>{employee.phone}</p>
         </article>
     )
 }

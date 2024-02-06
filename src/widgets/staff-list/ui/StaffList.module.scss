@@ -1,0 +1,15 @@
+.employeesTable {
+    width: 100%;
+
+    td {
+        padding: 28px 12px;
+    }
+
+    thead {
+        color: #B0B0B0
+    }
+
+    tbody > tr:hover {
+        background-color: #F2F2F2;
+    }
+}
