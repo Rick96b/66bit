@@ -45,6 +45,12 @@
     border-radius: 5px;
 }
 
+[data-theme='dark'] {
+    .technology {
+        background-color: #3E3E3E;
+    }
+}
+
 .divider {
     display: block;
     width: 100%;

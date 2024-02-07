@@ -35,7 +35,7 @@ const BreadcrumbsWidget:React.FC<BreadcrumbsProps> = props => {
         >
             <span>Главная</span>
             {pathnames.length ? 
-            <Link to='/'>Список сотрудников</Link>
+            <Link to='/' style={{color: 'inherit'}}>Список сотрудников</Link>
             :
             <span>Список сотрудников</span>
             }

@@ -7,6 +7,8 @@
     line-height: 14px;
     letter-spacing: 0.02em;
     text-align: left;
+    color: var(--text) !important;
+    background-color: var(--background-primary);
 }
 
 @media (min-width: 768px) {

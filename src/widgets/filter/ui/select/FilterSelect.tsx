@@ -5,6 +5,8 @@ import arrow from './assets/arrow.png'
 import miniArrow from './assets/miniArrow.png'
 import { laptop } from 'shared/utils/breakpoints'
 
+import './Filter.scss'
+
 const StyledSelect = styled(Select)({
     '& .MuiOutlinedInput-notchedOutline': {
       border: 'none !important'
@@ -19,7 +21,8 @@ const StyledSelect = styled(Select)({
       letterSpacing: '0em',
       textAlign: 'left',
       paddingRight: '8px !important',
-      paddingLeft: '0 !important'
+      paddingLeft: '0 !important',
+      color: 'var(--text)'
     },
     '& .MuiSelect-select[aria-expanded="true"]': {
         color: '#155DA4',
@@ -71,10 +74,10 @@ export const FilterSelect:React.FC<FilterSelectProps> = props => {
         >
             {menuItems?.map(item =>
                 <MenuItem key={item} value={item}>
+                    <ListItemText primary={item} />
                     { 
                         isMultiple && <Checkbox checked={value.indexOf(item) > -1}/>
                     }
-                    <ListItemText primary={item} />
                 </MenuItem>
             )}
         </StyledSelect>

@@ -1,8 +1,23 @@
 :root {
     --main-font: 'Raleway', 'Aerial';
-
+    --background-primary-light: #ffffff;
+    --text-light: #292929;
+  
+    /* dark theme tokens */
+    --background-primary-dark: #292929;
+    --text-dark: #F5F5F5;
 }
 
 body {
     font-family: var(--main-font);
+}
+  
+[data-theme='light'] {
+    --background-primary: var(--background-primary-light);
+    --text: var(--text-light);
+}
+
+[data-theme='dark'] {
+    --background-primary: var(--background-primary-dark);
+    --text: var(--text-dark);
 }

@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 
 import styles from './SelectedFilters.module.scss'
 import cancel from './assets/cancel.png'
-import classNames from 'classnames'
+import cancelLight from './assets/cancelLight.png'
+import { ThemeContext } from 'shared/theme/themeContext'
 
 interface SelectedFiltersProps {
     selectedFilters: string[]
@@ -10,6 +11,7 @@ interface SelectedFiltersProps {
 }
 
 const SelectedFilters:React.FC<SelectedFiltersProps> = props => {
+    const {theme} = useContext(ThemeContext)
     const {
         selectedFilters,
         removeFilter
@@ -22,7 +24,7 @@ const SelectedFilters:React.FC<SelectedFiltersProps> = props => {
                 {selectedFilters.map(selectedFilterName => selectedFilterName &&
                     <span className={styles.filterCard}>
                         <button className={styles.cancelButton} onClick={() => removeFilter(selectedFilterName)}>
-                            <img src={cancel} alt='cancel'/>
+                            <img src={theme === 'light' ? cancel : cancelLight} alt='cancel'/>
                         </button>
                         {selectedFilterName}
                     </span>

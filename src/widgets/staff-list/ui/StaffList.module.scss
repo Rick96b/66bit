@@ -1,5 +1,8 @@
 .employeesTable {
     width: 100%;
+    border-collapse: collapse;
+    background-color: var(--background-primary);
+    color: var(--text);
 
     td {
         padding: 12px 0;
@@ -16,8 +19,14 @@
         font-weight: 500;
     }
 
-    tbody > tr:hover {
+    tbody tr:hover {
         background-color: #F2F2F2;
+    }
+}
+
+[data-theme='dark'] {
+    .employeesTable tbody tr:hover {
+        background-color: #3E3E3E;
     }
 }
 
@@ -27,13 +36,10 @@
 }
 
 @media (min-width: 768px) {
-    .employeesTable {
-    
-        td {
-            padding: 28px 12px;
+    .employeesTable td {
+        padding: 28px 12px;
 
-            font-size: 20px;
-            line-height: 23px;
-        }
+        font-size: 20px;
+        line-height: 23px;
     }
 }

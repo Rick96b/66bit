@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Switch, styled, useMediaQuery } from '@mui/material';
 
 import DarkThemeIcon from './assets/dark.png'
@@ -6,6 +6,7 @@ import LightThemeIcon from './assets/light.png'
 import DarkThemeIconMini from './assets/darkMini.png'
 import LightThemeIconMini from './assets/lightMini.png'
 import { laptop } from 'shared/utils/breakpoints';
+import { ThemeContext } from 'shared/theme/themeContext';
 
 const MuiSwitch = styled(Switch)({
   display: 'flex',
@@ -34,28 +35,29 @@ const MuiSwitch = styled(Switch)({
 });
 
 const ThemeSwitch = () => {
-    const [checked, setChecked] = useState(false)
-    const isLaptop = useMediaQuery(`(min-width: ${laptop}px)`)
+  const {setTheme, theme} = useContext(ThemeContext)
+  const [checked, setChecked] = useState(false)
+  const isLaptop = useMediaQuery(`(min-width: ${laptop}px)`)
 
-    return (
-      <MuiSwitch 
-          checked={checked}
-          onChange={() => setChecked(!checked)}
-          icon={<img src={isLaptop ? LightThemeIcon : LightThemeIconMini} />}
-          checkedIcon={<img src={isLaptop ? DarkThemeIcon : DarkThemeIconMini} />}
-          color='primary'
-          sx={isLaptop ? {
-            width: 55,
-            height: 26,
-            '& .MuiSwitch-switchBase': {
-              padding: '3px !important',
-              '&.Mui-checked': {
-                transform: 'translateX(29px)',
-              },
+  return (
+    <MuiSwitch 
+        checked={theme === 'light' ? false : true}
+        onChange={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+        icon={<img src={isLaptop ? LightThemeIcon : LightThemeIconMini} />}
+        checkedIcon={<img src={isLaptop ? DarkThemeIcon : DarkThemeIconMini} />}
+        color='primary'
+        sx={isLaptop ? {
+          width: 55,
+          height: 26,
+          '& .MuiSwitch-switchBase': {
+            padding: '3px !important',
+            '&.Mui-checked': {
+              transform: 'translateX(29px)',
             },
-          } : {}}
-      />
-    )
+          },
+        } : {}}
+    />
+  )
 }
 
 export default ThemeSwitch;

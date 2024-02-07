@@ -29,11 +29,14 @@ const stackList = [
 ]
 
 const FilterTextField = styled(TextField)({
-  color: '#292929',
   width: '100%',
   height: '43px',
   '& .MuiInputBase-input': {
-    padding: '10px'
+    padding: '10px',
+    color: 'var(--text) !important',
+  },
+  '& .MuiOutlinedInput-notchedOutline': {
+    borderColor: '#B0B0B0 !important'
   }
 })
 

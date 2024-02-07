@@ -1,3 +1,8 @@
+.filter {
+    color: var(--text);
+    background-color: var(--background-primary);
+}
+
 .filter h2 {
     font-size: 20px;
     font-weight: 700;
@@ -24,6 +29,12 @@
 
         padding-top: 16px;
         padding-bottom: 16px;
+    }
+}
+
+[data-theme='dark'] {
+    .selectedFiltersContainer {
+        background-color: #3E3E3E;
     }
 }
 
