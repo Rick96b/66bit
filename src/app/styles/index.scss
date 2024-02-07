@@ -6,10 +6,19 @@
     max-width: 1560px;
     
     margin: 0 auto;
-    padding: 0 24px;
+    padding-left: 24px;
+    padding-right: 24px;
 }
 
 body {
+    width: 100%;
+    height: 100%;
+
     color: var(--text);
     background-color: var(--background-primary);
+}
+html,
+#root {
+    width: 100%;
+    height: 100%;
 }

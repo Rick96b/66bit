@@ -28,8 +28,8 @@ const BreadcrumbsWidget:React.FC<BreadcrumbsProps> = props => {
             aria-label="breadcrumb"
             sx={{
                 '.MuiBreadcrumbs-separator': {
-                    marginLeft: isLaptop && '16px !important' || '12px !important',
-                    marginRight: isLaptop && '16px !important' || '12px !important'
+                    marginLeft: (isLaptop && '16px !important') || '12px !important',
+                    marginRight: (isLaptop && '16px !important') || '12px !important'
                 }
             }}
         >

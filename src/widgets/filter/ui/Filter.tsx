@@ -55,15 +55,6 @@ const Filter:React.FC<FilterProps> = props => {
   const [stack, setStack] = useState<string[]>([])
   const isLaptop = useMediaQuery(`(min-width: ${laptop}px)`)
 
-  const handleChangeStack = (event: SelectChangeEvent<string[]>) => {
-    const {
-      target: { value },
-    } = event;
-    setStack(
-      typeof value === 'string' ? value.split(',') : value,
-    );
-  }
-
   const handleRemoveFilter = (filterName: string) => {
     if(filterName === gender) setGender('')
     if(position.includes(filterName)) setPositions('')
@@ -91,7 +82,7 @@ const Filter:React.FC<FilterProps> = props => {
                   />
                   <FilterSelect 
                     renderValue='Стек технологий'
-                    onChange={handleChangeStack}
+                    onChange={({target}) => setStack(typeof target.value === 'string' ? target.value.split(',') : target.value)}
                     menuItems={stackList}
                     isMultiple
                     value={stack}
@@ -120,7 +111,7 @@ const Filter:React.FC<FilterProps> = props => {
               />
               <FilterSelect 
                 renderValue='Стек технологий'
-                onChange={handleChangeStack}
+                onChange={({target}) => setStack(typeof target.value === 'string' ? target.value.split(',') : target.value)}
                 menuItems={stackList}
                 isMultiple
                 value={stack}

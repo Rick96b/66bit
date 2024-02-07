@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { ThemeContext } from "shared/theme/themeContext";
 
+type Theme = 'light' | 'dark'
+
 export const withTheme = (component: () => React.ReactNode) => () => {
-    const [theme, setTheme] = useState<'light' | 'dark'>('light')
+    const [theme, setTheme] = useState<Theme>(localStorage.getItem('theme-name') as Theme || 'light')
 
     const handleChangeTheme = (newTheme: 'dark' | 'light') => {
         setTheme(newTheme)

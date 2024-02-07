@@ -1,10 +1,7 @@
 import { Gender, Position, Stack } from 'entities/employee'
-import React, { useState } from 'react'
-import { StaffList } from 'widgets'
-import { Breadcrumbs } from 'widgets/breadcrumbs'
+import { useState } from 'react'
+import { StaffList } from 'widgets/staff-list'
 import { Filter } from 'widgets/filter'
-import { Header } from 'widgets/header'
-import EmployeesList from 'widgets/staff-list/ui/StaffList'
 
 type filters = {
   gender?: Gender
@@ -18,10 +15,8 @@ const Home = () => {
   console.log(filters)
   return (
     <>
-      <Header />
-      <Breadcrumbs pageName='Список сотрудников' />
       <Filter changeFilters={setFilters}/>
-      <EmployeesList filters={filters}/>
+      <StaffList filters={filters}/>
     </>
   )
 }

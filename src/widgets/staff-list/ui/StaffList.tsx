@@ -4,8 +4,9 @@ import { useInfiniteScroll } from '../hooks/useInfiniteScroll'
 
 import styles from './StaffList.module.scss'
 import { Link } from 'react-router-dom'
+import Loader from 'shared/components/Loader'
 
-interface EmployeesListProps {
+interface StaffListProps {
     filters?: {
         gender?: Gender
         position?: Position
@@ -14,7 +15,7 @@ interface EmployeesListProps {
     }
 }
 
-const EmployeesList: React.FC<EmployeesListProps> = props => {
+const StaffList: React.FC<StaffListProps> = props => {
     const {
         filters
     } = props
@@ -25,6 +26,8 @@ const EmployeesList: React.FC<EmployeesListProps> = props => {
     })
     const newsListRef = useRef(null)
     useInfiniteScroll(newsListRef, addEmployeesByPage)
+
+    if(isLoading) return <Loader />
     
     return (
         <section ref={newsListRef} className='container'>
@@ -54,4 +57,4 @@ const EmployeesList: React.FC<EmployeesListProps> = props => {
     )
 }
 
-export default EmployeesList
+export default StaffList
