@@ -3,6 +3,7 @@ import React, { useRef } from 'react'
 import { useInfiniteScroll } from '../hooks/useInfiniteScroll'
 
 import styles from './StaffList.module.scss'
+import { Link } from 'react-router-dom'
 
 interface EmployeesListProps {
     filters?: {
@@ -38,12 +39,14 @@ const EmployeesList: React.FC<EmployeesListProps> = props => {
                 </thead>
                 <tbody>
                     {employees.map(EmployeesData => 
-                        <tr>
-                            <td>{EmployeesData.name}</td>
-                            <td>{EmployeesData.position}</td>
-                            <td>{EmployeesData.phone}</td>
-                            <td>{EmployeesData.birthdate}</td>
-                        </tr>
+                        <Link to={`/${EmployeesData.id}`} className={styles.link}>
+                            <tr>
+                                <td>{EmployeesData.name}</td>
+                                <td>{EmployeesData.position}</td>
+                                <td>{EmployeesData.phone}</td>
+                                <td>{EmployeesData.birthdate}</td>
+                            </tr>
+                        </Link>
                     )}
                 </tbody>
             </table>

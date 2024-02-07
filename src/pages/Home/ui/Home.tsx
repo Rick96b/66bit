@@ -13,8 +13,6 @@ type filters = {
   name?: string
 }
 
-
-
 const Home = () => {
   const [filters, setFilters] = useState<filters>({})
 
