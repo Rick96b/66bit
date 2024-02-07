@@ -1,6 +1,7 @@
 import { EmployeeCard, useEmployee } from 'entities/employee'
 import React from 'react'
 import { useParams } from 'react-router-dom'
+import { Breadcrumbs } from 'widgets/breadcrumbs'
 import { Header } from 'widgets/header'
 
 const Employee = () => {
@@ -13,6 +14,7 @@ const Employee = () => {
         return (
             <>
                 <Header />
+                <Breadcrumbs pageName={employee.name}/>
                 <EmployeeCard employee={employee} />
             </>
         )

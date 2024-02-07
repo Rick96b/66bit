@@ -1,7 +1,7 @@
-import { Breadcrumbs } from '@mui/material'
 import { Gender, Position, Stack } from 'entities/employee'
 import React, { useState } from 'react'
 import { StaffList } from 'widgets'
+import { Breadcrumbs } from 'widgets/breadcrumbs'
 import { Filter } from 'widgets/filter'
 import { Header } from 'widgets/header'
 import EmployeesList from 'widgets/staff-list/ui/StaffList'
@@ -19,9 +19,7 @@ const Home = () => {
   return (
     <>
       <Header />
-      <Breadcrumbs>
-
-      </Breadcrumbs>
+      <Breadcrumbs pageName='Список сотрудников' />
       <Filter changeFilters={setFilters}/>
       <EmployeesList filters={filters}/>
     </>
