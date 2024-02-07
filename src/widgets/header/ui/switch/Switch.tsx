@@ -1,19 +1,22 @@
 import React, { useState } from 'react'
-import { Switch, styled } from '@mui/material';
+import { Switch, styled, useMediaQuery } from '@mui/material';
 
 import DarkThemeIcon from './assets/dark.png'
 import LightThemeIcon from './assets/light.png'
+import DarkThemeIconMini from './assets/darkMini.png'
+import LightThemeIconMini from './assets/lightMini.png'
+import { laptop } from 'shared/utils/breakpoints';
 
 const MuiSwitch = styled(Switch)({
   display: 'flex',
   alignItems: 'center',
-  width: 55,
-  height: 26,
+  width: 47,
+  height: 22,
   padding: 0,
   '& .MuiSwitch-switchBase': {
-    padding: '3px !important',
+    padding: '2px !important',
     '&.Mui-checked': {
-      transform: 'translateX(29px)',
+      transform: 'translateX(26px)',
       '& + .MuiSwitch-track': {
         backgroundColor: '#155DA4',
         opacity: 1,
@@ -32,15 +35,27 @@ const MuiSwitch = styled(Switch)({
 
 const ThemeSwitch = () => {
     const [checked, setChecked] = useState(false)
-  return (
-    <MuiSwitch 
-        checked={checked}
-        onChange={() => setChecked(!checked)}
-        icon={<img src={LightThemeIcon} />}
-        checkedIcon={<img src={DarkThemeIcon} />}
-        color='primary'
-    />
-  )
+    const isLaptop = useMediaQuery(`(min-width: ${laptop}px)`)
+
+    return (
+      <MuiSwitch 
+          checked={checked}
+          onChange={() => setChecked(!checked)}
+          icon={<img src={isLaptop ? LightThemeIcon : LightThemeIconMini} />}
+          checkedIcon={<img src={isLaptop ? DarkThemeIcon : DarkThemeIconMini} />}
+          color='primary'
+          sx={isLaptop ? {
+            width: 55,
+            height: 26,
+            '& .MuiSwitch-switchBase': {
+              padding: '3px !important',
+              '&.Mui-checked': {
+                transform: 'translateX(29px)',
+              },
+            },
+          } : {}}
+      />
+    )
 }
 
 export default ThemeSwitch;

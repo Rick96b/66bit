@@ -1,7 +1,9 @@
 import React from 'react'
-import { Checkbox, ListItemText, MenuItem, Select, styled, SelectChangeEvent } from "@mui/material"
+import { Checkbox, ListItemText, MenuItem, Select, styled, SelectChangeEvent, useMediaQuery } from "@mui/material"
 
 import arrow from './assets/arrow.png'
+import miniArrow from './assets/miniArrow.png'
+import { laptop } from 'shared/utils/breakpoints'
 
 const StyledSelect = styled(Select)({
     '& .MuiOutlinedInput-notchedOutline': {
@@ -11,9 +13,9 @@ const StyledSelect = styled(Select)({
       display: 'flex',
       alignItems: 'center',
       fontFamily: 'var(--main-font)',
-      fontSize: '20px',
+      fontSize: '12px',
       fontWeight: '400',
-      lineHeight: '23px',
+      lineHeight: '14px',
       letterSpacing: '0em',
       textAlign: 'left',
       paddingRight: '8px !important',
@@ -28,7 +30,7 @@ const StyledSelect = styled(Select)({
     '& img': {
         transition: 'all 0.3s'
     }
-  })
+})
 
 interface FilterSelectProps {
     menuItems?: string[]
@@ -47,6 +49,8 @@ export const FilterSelect:React.FC<FilterSelectProps> = props => {
         isMultiple
     } = props
 
+    const isLaptop = useMediaQuery(`(min-width: ${laptop}px)`)
+
     return (
         <StyledSelect 
             multiple={isMultiple}
@@ -55,8 +59,15 @@ export const FilterSelect:React.FC<FilterSelectProps> = props => {
             displayEmpty
             renderValue={() => <span>{renderValue}</span>}
             IconComponent={() => (
-                <img src={arrow} /> 
+                <img src={isLaptop ? arrow : miniArrow} /> 
             )}
+            sx={isLaptop ? {
+                '& .MuiSelect-select': {
+                    fontSize: '20px',
+                    lineHeight: '23px',
+                    paddingRight: '12px !important',
+                }
+            } : {}}    
         >
             {menuItems?.map(item =>
                 <MenuItem key={item} value={item}>

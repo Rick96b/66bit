@@ -1,9 +1,10 @@
-import { Button, SelectChangeEvent, TextField, styled } from '@mui/material'
+import { Button, SelectChangeEvent, TextField, styled, useMediaQuery } from '@mui/material'
 import React, { useState } from 'react'
 
 import styles from './Filter.module.scss'
 import SelectedFilters from './selected-filters/SelectedFilters'
 import { FilterSelect } from './select/FilterSelect'
+import { laptop } from 'shared/utils/breakpoints'
 
 const positionsList = [
   'Frontend-разработчик',
@@ -49,6 +50,7 @@ const Filter:React.FC<FilterProps> = props => {
   const [gender, setGender] = useState('')
   const [name, setName] = useState('')
   const [stack, setStack] = useState<string[]>([])
+  const isLaptop = useMediaQuery(`(min-width: ${laptop}px)`)
 
   const handleChangeStack = (event: SelectChangeEvent<string[]>) => {
     const {
@@ -69,34 +71,59 @@ const Filter:React.FC<FilterProps> = props => {
     <section className={styles.filter}>
         <div className={'container'}>
           <div className={styles.filterHeader}>
-              <h2>Список сотрудников</h2>
-              <div className={styles.filterSelectsContainer}>
-                <FilterSelect 
-                  renderValue='Должность'
-                  menuItems={positionsList}
-                  onChange={(event) => setPositions(event.target.value)}
-                  value={position}
-                />
-                <FilterSelect 
-                   renderValue='Пол'
-                   menuItems={genderList}
-                   onChange={(event) => setGender(event.target.value)}
-                   value={gender}
-                />
-                <FilterSelect 
-                  renderValue='Стек технологий'
-                  onChange={handleChangeStack}
-                  menuItems={stackList}
-                  isMultiple
-                  value={stack}
-                />
-              </div>
+              <h2>Список сотрудников</h2>     
+              {isLaptop && 
+                <div className={styles.filterSelectsContainer}>
+                  <FilterSelect 
+                    renderValue='Должность'
+                    menuItems={positionsList}
+                    onChange={(event) => setPositions(event.target.value)}
+                    value={position}
+                  />
+                  <FilterSelect 
+                    renderValue='Пол'
+                    menuItems={genderList}
+                    onChange={(event) => setGender(event.target.value)}
+                    value={gender}
+                  />
+                  <FilterSelect 
+                    renderValue='Стек технологий'
+                    onChange={handleChangeStack}
+                    menuItems={stackList}
+                    isMultiple
+                    value={stack}
+                  />
+                </div>
+              }
           </div>
           <FilterTextField 
             placeholder='Поиск'
             value={name}
             onChange={(event) => setName(event.target.value)}
           />
+          {!isLaptop && 
+            <div className={styles.filterSelectsContainer}>
+              <FilterSelect 
+                renderValue='Должность'
+                menuItems={positionsList}
+                onChange={(event) => setPositions(event.target.value)}
+                value={position}
+              />
+              <FilterSelect 
+                renderValue='Пол'
+                menuItems={genderList}
+                onChange={(event) => setGender(event.target.value)}
+                value={gender}
+              />
+              <FilterSelect 
+                renderValue='Стек технологий'
+                onChange={handleChangeStack}
+                menuItems={stackList}
+                isMultiple
+                value={stack}
+              />
+            </div>
+            }
         </div>
         <div className={styles.selectedFiltersContainer}>
           <div className='container'>

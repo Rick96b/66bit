@@ -2,11 +2,18 @@
     width: 100%;
 
     td {
-        padding: 28px 12px;
+        padding: 12px 0;
+
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 14px;
+        letter-spacing: 0em;
+        text-align: left;
     }
 
     thead {
-        color: #B0B0B0
+        color: #B0B0B0;
+        font-weight: 500;
     }
 
     tbody > tr:hover {
@@ -17,4 +24,16 @@
 .link {
     display: contents;
     color: inherit;
+}
+
+@media (min-width: 768px) {
+    .employeesTable {
+    
+        td {
+            padding: 28px 12px;
+
+            font-size: 20px;
+            line-height: 23px;
+        }
+    }
 }
