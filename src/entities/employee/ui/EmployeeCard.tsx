@@ -16,7 +16,6 @@ const EmployeeCard:React.FC<EmployeeCardProps> = props => {
     } = props
 
     const isLaptop = useMediaQuery(`(min-width: ${laptop}px)`)
-    console.log(isLaptop)
 
     return (
         <article className={classNames(styles.employeeCard, 'container')}>
@@ -37,8 +36,8 @@ const EmployeeCard:React.FC<EmployeeCardProps> = props => {
 
             {!isLaptop && 
                 <div className={styles.stack}>
-                    {employee.stack.map(technology => 
-                        <p className={styles.technology}>{technology}</p>
+                    {employee.stack.map((technology, index) => 
+                        <p className={styles.technology} key={index}>{technology}</p>
                     )}
                 </div>
             }

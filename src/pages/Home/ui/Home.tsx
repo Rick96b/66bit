@@ -12,7 +12,7 @@ type filters = {
 
 const Home = () => {
   const [filters, setFilters] = useState<filters>({})
-  console.log(filters)
+
   return (
     <>
       <Filter changeFilters={setFilters}/>

@@ -3,7 +3,7 @@ import React, { useRef } from 'react'
 import { useInfiniteScroll } from '../hooks/useInfiniteScroll'
 
 import styles from './StaffList.module.scss'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Loader from 'shared/components/Loader'
 
 interface StaffListProps {
@@ -25,6 +25,7 @@ const StaffList: React.FC<StaffListProps> = props => {
         filters: filters
     })
     const newsListRef = useRef(null)
+    const navigate = useNavigate();
     useInfiniteScroll(newsListRef, addEmployeesByPage)
 
     if(isLoading) return <Loader />
@@ -41,15 +42,13 @@ const StaffList: React.FC<StaffListProps> = props => {
                     </tr>
                 </thead>
                 <tbody>
-                    {employees.map(EmployeesData => 
-                        <Link to={`/${EmployeesData.id}`} className={styles.link}>
-                            <tr>
-                                <td>{EmployeesData.name}</td>
-                                <td>{EmployeesData.position}</td>
-                                <td>{EmployeesData.phone}</td>
-                                <td>{EmployeesData.birthdate}</td>
-                            </tr>
-                        </Link>
+                    {employees.map((EmployeesData, index) => 
+                        <tr onClick={() => navigate(`/${EmployeesData.id}`)} key={index}>
+                            <td>{EmployeesData.name}</td>
+                            <td>{EmployeesData.position}</td>
+                            <td>{EmployeesData.phone}</td>
+                            <td>{EmployeesData.birthdate}</td>
+                        </tr>
                     )}
                 </tbody>
             </table>

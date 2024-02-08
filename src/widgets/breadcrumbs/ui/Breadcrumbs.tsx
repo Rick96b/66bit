@@ -42,9 +42,9 @@ const BreadcrumbsWidget:React.FC<BreadcrumbsProps> = props => {
             {pathnames.map((path, index) => {
                 const last = index === pathnames.length - 1;
                 return last ? (
-                    <p>{pageName || path}</p>
+                    <p key={index}>{pageName || path}</p>
                 ) : 
-                <Link to={path}>{path}</Link>
+                <Link to={path} key={index}>{path}</Link>
             })}
         </Breadcrumbs>
     )

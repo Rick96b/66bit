@@ -36,6 +36,7 @@ export const useEmployeeApi = (props:useEmployeeApiProps) => {
           stack: filters?.stack 
         }
       });
+
       setEmployees((previousList) => [...previousList, ...response.data]);
       setError('');
     } catch (error) {
@@ -49,10 +50,13 @@ export const useEmployeeApi = (props:useEmployeeApiProps) => {
   useEffect(() => {
     setEmployees([])
     setPage(1)
+    fetchEmployees()
   }, [filters]);
 
   useEffect(() => {
-    fetchEmployees();
+    if(page > 1) {
+      fetchEmployees();
+    }
   }, [page]);
 
   const addEmployeesByPage = () => {
