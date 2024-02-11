@@ -41,8 +41,9 @@ export const useEmployeeApi = (props:useEmployeeApiProps) => {
           return stringify(params)
         }
       });
-      console.log(response)
-      setEmployees((previousList) => [...previousList, ...response.data]);
+      if(response.data) {
+        setEmployees((previousList) => [...previousList, ...response.data]);
+      }
       setError('');
     } catch (error) {
       console.log(error)

@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import { throttle } from "shared/utils/throttle";
 
 export function useInfiniteScroll(ref: React.RefObject<HTMLElement>, callback: Function) {
-    const [isLoading, setIsLoading] = useState(false);
-
     useEffect(() => {
       const handleScroll = throttle(() => {
         if(ref.current) {
@@ -22,6 +20,4 @@ export function useInfiniteScroll(ref: React.RefObject<HTMLElement>, callback: F
         window.removeEventListener("scroll", handleScroll);
       };
     }, []);
-
-    return {isLoading}
 }

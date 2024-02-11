@@ -21,8 +21,8 @@ const SelectedFilters:React.FC<SelectedFiltersProps> = props => {
         <div className={styles.selectedFilters}> 
             <span className={styles.selectedFiltersTitle}>Выбранные фильтры:</span>
             <div className={styles.selectedFiltersContainer}>
-                {selectedFilters.map(selectedFilterName => selectedFilterName &&
-                    <span className={styles.filterCard}>
+                {selectedFilters.map((selectedFilterName, index) => selectedFilterName &&
+                    <span className={styles.filterCard} key={index}>
                         <button className={styles.cancelButton} onClick={() => removeFilter(selectedFilterName)}>
                             <img src={theme === 'light' ? cancel : cancelLight} alt='cancel'/>
                         </button>

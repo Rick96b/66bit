@@ -20,15 +20,13 @@ const StaffList: React.FC<StaffListProps> = props => {
         filters
     } = props
 
-    const {employees, isLoading, error, addEmployeesByPage} = useEmployeeApi({
+    const {employees, addEmployeesByPage} = useEmployeeApi({
         url:'https://frontend-test-api.stk8s.66bit.ru/api/Employee',
         filters: filters
     })
     const newsListRef = useRef(null)
     const navigate = useNavigate();
     useInfiniteScroll(newsListRef, addEmployeesByPage)
-
-    if(isLoading) return <Loader />
     
     return (
         <section ref={newsListRef} className='container'>
