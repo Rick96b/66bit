@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Employee, Gender, Position, Stack } from '../model/types';
 import { genderList, positions } from '../model/enums';
+import { stringify } from 'qs';
 
 interface useEmployeeApiProps {
   url: string,
@@ -27,16 +28,20 @@ export const useEmployeeApi = (props:useEmployeeApiProps) => {
   const fetchEmployees = async () => {
     try {
       setIsLoading(true);
+      
       const response = await axios.get<Employee[]>(url, {
         params: {
           page: page,
           name: filters?.name,
           gender: filters?.gender ? genderList[filters?.gender] : '',
           position: filters?.position ? positions[filters?.position] : '',
-          stack: filters?.stack 
+          stack: filters?.stack
+        },
+        paramsSerializer: params => {
+          return stringify(params)
         }
       });
-
+      console.log(response)
       setEmployees((previousList) => [...previousList, ...response.data]);
       setError('');
     } catch (error) {
